@@ -52,15 +52,15 @@ Vue.component('animated-integer', {
     data: function () {
         return {
             tweeningValue: 0
-        }
+        };
     },
     watch: {
         value: function (newValue, oldValue) {
-            this.tween(oldValue, newValue)
+            this.tween(oldValue, newValue);
         }
     },
     mounted: function () {
-        this.tween(0, this.value)
+        this.tween(0, this.value);
     },
     methods: {
         tween: function (startValue, endValue) {
@@ -69,7 +69,7 @@ Vue.component('animated-integer', {
 
             function animate(time) {
                 TWEEN.update(time);
-                animationFrame = requestAnimationFrame(animate)
+                animationFrame = requestAnimationFrame(animate);
             }
             new TWEEN.Tween({
                     tweeningValue: startValue
@@ -78,13 +78,13 @@ Vue.component('animated-integer', {
                     tweeningValue: endValue
                 }, 500)
                 .onUpdate(function () {
-                    vm.tweeningValue = this.tweeningValue.toFixed(0)
+                    vm.tweeningValue = this.tweeningValue.toFixed(0);
                 })
                 .onComplete(function () {
-                    cancelAnimationFrame(animationFrame)
+                    cancelAnimationFrame(animationFrame);
                 })
-                .start()
-            animationFrame = requestAnimationFrame(animate)
+                .start();
+            animationFrame = requestAnimationFrame(animate);
         }
     }
 });
