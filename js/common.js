@@ -38,7 +38,7 @@ function getNumbersAsString(numbersToShow) {
 // more dynamic transitions and complex transition
 // strategies.
 Vue.component('animated-integer', {
-    template: '<span>{{ tweeningValue }}</h2></span>',
+    template: '<span class="animatedInteger">{{ tweeningValue | formatNumber }}</span>',
     props: {
         value: {
             type: Number,
@@ -57,6 +57,19 @@ Vue.component('animated-integer', {
     },
     mounted: function () {
         this.tween(0, this.value);
+    },
+    filters: {
+        formatNumber: function (nStr) {
+            nStr += '';
+            x = nStr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + '\'' + '$2');
+            }
+            return x1 + x2;
+        }
     },
     methods: {
         tween: function (startValue, endValue) {
@@ -88,15 +101,14 @@ Vue.component('animated-integer', {
 Vue.component('play-again', {
     template: `
     <form v-on:submit.prevent="play">
-        <div class="alert alert-danger" v-if="errors.length">
-            <p>Please correct the following problems:</p>
-            <ul>
+        <div class="alert alert-danger lead" v-if="errors.length">
+            <ul class="list-unstyled">
                 <li v-for="e in errors">{{ e }}</li>
             </ul>
         </div>
         <p class="lead ">
             Next time I want to play with
-            <input type="number" v-model="numbers" class="howManyInput" required> numbers between <input type="number" v-model="min" class="howManyInput" required> and <input type="number" v-model="max" class="howManyInput"  required><br>
+            <input type="number" v-model.number="numbers" class="howManyInput" required> numbers between <input type="number" v-model.number="min" class="howManyInput" required> and <input type="number" v-model.number="max" class="howManyInput"  required><br>
             <button type="submit" class="btn btn-lg btn-primary ">Play again</button>
         </p>
     </form>
@@ -122,6 +134,7 @@ Vue.component('play-again', {
     },
     methods: {
         play: function () {
+            console.log(this.numbers, this.min, this.max);
             if (!this.validation().length) {
                 this.$emit('play', this.numbers, this.min, this.max);
             }

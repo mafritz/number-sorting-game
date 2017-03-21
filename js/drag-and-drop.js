@@ -3,13 +3,17 @@ var appDragAndDrop = new Vue({
     data: {
         showResponse: false,
         howMany: 5,
-        numbersToOrder: getNumbers(5, 10, 100),
+        min: 1,
+        max: 5,
         orderedNumbers: [],
         isRight: null
     },
     computed: {
         correctAnswer: function () {
             return getSortedNumbers(this.numbersToOrder).join(", ");
+        },
+        numbersToOrder: function () {
+            return getNumbers(this.howMany, this.min, this.max);
         }
     },
     methods: {
@@ -17,9 +21,10 @@ var appDragAndDrop = new Vue({
             this.orderedNumbers = getSortedNumbers(this.numbersToOrder);
             this.showResponse = true;
         },
-        playAgain: function (numbers) {
-            this.howMany = numbers;
-            this.numbersToOrder = getNumbers(this.howMany, 10, 100);
+        playAgain: function (howMany, min, max) {
+            this.howMany = +howMany;
+            this.min = +min;
+            this.max = +max;
             this.orderedNumbers = getSortedNumbers(this.numbersToOrder);
             this.showResponse = false;
         },
@@ -44,7 +49,6 @@ var appDragAndDrop = new Vue({
 });
 
 $("#listNumbers").sortable({
-    axis: "x",
     cursor: "move",
     placeholder: "ui-state-highlight",
     forcePlaceholderSize: true,

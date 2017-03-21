@@ -70,7 +70,7 @@
                     </h2>
                 </div>
                 <hr>
-                <play-again v-bind:numbers="howMany" v-on:play="playAgain"></play-again>
+                <play-again v-bind:numbers="howMany" v-bind:min="min" v-bind:max="max" v-on:play="playAgain"></play-again>
             </div>
 
         </transition>
