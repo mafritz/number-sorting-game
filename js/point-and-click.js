@@ -3,7 +3,6 @@ var appPointAndClick = new Vue({
     data: {
         showResponse: false,
         howMany: 5,
-        newHowMany: 5,
         numbersToOrder: getNumbers(5, 10, 100),
         orderedNumbers: [],
         replyNumbers: [],
@@ -19,8 +18,9 @@ var appPointAndClick = new Vue({
             this.orderedNumbers = getSortedNumbers(this.numbersToOrder);
             this.showResponse = true;
         },
-        playAgain: function () {
-            this.numbersToOrder = getNumbers(this.newHowMany, 10, 100);
+        playAgain: function (numbers) {
+            this.howMany = numbers;
+            this.numbersToOrder = getNumbers(this.howMany, 10, 100);
             this.orderedNumbers = getSortedNumbers(this.numbersToOrder);
             this.showResponse = false;
             this.replyNumbers = [];
@@ -44,7 +44,7 @@ var appPointAndClick = new Vue({
             this.checkResponse();
         },
         checkResponse: function () {
-            if (+this.newHowMany === +this.replyNumbers.length) {
+            if (+this.howMany === +this.replyNumbers.length) {
                 this.isRight = compare(this.numbersToOrder, this.replyNumbers);
                 this.showResponse = true;
             }

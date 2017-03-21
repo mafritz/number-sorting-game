@@ -1,8 +1,5 @@
 function getNumbers(howMany, lowerLimit, upperLimit) {
     var numbersToOrder = [];
-    if (howMany < 2) {
-        console.log('You need at least 2 numbers to play the game.');
-    }
     //Get unique random numbers
     while (numbersToOrder.length < howMany) {
         var newNumber = _.random(lowerLimit, upperLimit);
@@ -15,7 +12,6 @@ function getNumbers(howMany, lowerLimit, upperLimit) {
     //Check that they are not already in the correct order
     while (compare(numbersToOrder, numbersToOrder)) {
         numbersToOrder = _.shuffle(numbersToOrder);
-        console.log(numbersToOrder);
     }
     return numbersToOrder;
 }
@@ -85,6 +81,68 @@ Vue.component('animated-integer', {
                 })
                 .start();
             animationFrame = requestAnimationFrame(animate);
+        }
+    }
+});
+
+Vue.component('play-again', {
+    template: `
+    <form v-on:submit.prevent="play">
+        <div class="alert alert-danger" v-if="errors.length">
+            <p>Please correct the following problems:</p>
+            <ul>
+                <li v-for="e in errors">{{ e }}</li>
+            </ul>
+        </div>
+        <p class="lead ">
+            Next time I want to play with
+            <input type="number" v-model="numbers" class="howManyInput" required> numbers between <input type="number" v-model="min" class="howManyInput" required> and <input type="number" v-model="max" class="howManyInput"  required><br>
+            <button type="submit" class="btn btn-lg btn-primary ">Play again</button>
+        </p>
+    </form>
+    `,
+    props: {
+        numbers: {
+            type: Number,
+            required: true
+        },
+        min: {
+            type: Number,
+            required: true
+        },
+        max: {
+            type: Number,
+            required: true
+        }
+    },
+    data: function () {
+        return {
+            errors: []
+        };
+    },
+    methods: {
+        play: function () {
+            if (!this.validation().length) {
+                this.$emit('play', this.numbers, this.min, this.max);
+            }
+        },
+        validation: function () {
+            this.errors = [];
+            if (this.min === this.max) {
+                this.errors.push('Provide different values for the minimum and maximum limits of the digits');
+            }
+
+            if (this.max < this.min) {
+                var max = this.min;
+                var min = this.max;
+                this.max = max;
+                this.min = min;
+            }
+
+            if (this.min + this.numbers - 1 > this.max) {
+                this.errors.push('The gap between the minimum and maximum limits is not enough to generate ' + this.numbers + ' different numbers');
+            }
+            return this.errors;
         }
     }
 });

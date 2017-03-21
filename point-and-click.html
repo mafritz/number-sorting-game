@@ -70,11 +70,7 @@
                     </h2>
                 </div>
                 <hr>
-                <p class="lead ">
-                    Next time I want to play with
-                    <input type="number" v-model="newHowMany" class="howManyInput" min="2 " max="90 "> numbers!<br>
-                    <button @click="playAgain() " class="btn btn-lg btn-primary ">Play again</button>
-                </p>
+                <play-again v-bind:numbers="howMany" v-on:play="playAgain"></play-again>
             </div>
 
         </transition>
