@@ -22,6 +22,7 @@ var appShowResponse = new Vue({
             this.howMany = +howMany;
             this.min = +min;
             this.max = +max;
+            this.numbersToOrder = getNumbers(this.howMany, this.min, this.max);
             this.orderedNumbers = getSortedNumbers(this.numbersToOrder);
             this.showResponse = false;
             this.errors = [];

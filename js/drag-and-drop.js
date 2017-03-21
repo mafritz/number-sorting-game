@@ -1,4 +1,4 @@
-var appDragAndDrop = new Vue({
+var app = new Vue({
     el: '#app',
     data: {
         showResponse: false,
@@ -25,10 +25,11 @@ var appDragAndDrop = new Vue({
             this.howMany = +howMany;
             this.min = +min;
             this.max = +max;
+            this.numbersToOrder = getNumbers(this.howMany, this.min, this.max);
             this.orderedNumbers = getSortedNumbers(this.numbersToOrder);
             this.showResponse = false;
         },
-        checkResponse: function () {
+        checkResponseDragAndDrop: function () {
             var replyNumbers = [];
             $("#listNumbers li").each(function () {
                 replyNumbers.push(+$(this).text());
@@ -53,7 +54,7 @@ $("#listNumbers").sortable({
     placeholder: "ui-state-highlight",
     forcePlaceholderSize: true,
     update: function () {
-        appDragAndDrop.checkResponse();
+        app.checkResponseDragAndDrop();
     }
 });
 $("#listNumbers").disableSelection();
