@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Show Response version of the Number Sorting Game</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/custom-bootstrap.css" rel="stylesheet">
+    <link href="./node_modules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Droid+Sans" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+                <a class="navbar-brand" href="./"><i class="fa fa-sort-numeric-asc text-success" aria-hidden="true"></i> Number Sorting Game</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="./"><i class="fa fa-book" aria-hidden="true"></i> Presentation</a></li>
+                    <li class="active"><a href="./show-response.html"><i class="fa fa-eye" aria-hidden="true"></i> Show Response</a></li>
+                    <li><a href="./point-and-click.html"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Point and Click</a></li>
+                    <li><a href="./drag-and-drop.html"><i class="fa fa-arrows" aria-hidden="true"></i> Drag and Drop</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+    </nav>
+
+    <div class="container text-center" id="app">
+        <div class="page-header">
+            <h1><i class="fa fa-eye" aria-hidden="true"></i> Show Response version</h1>
+        </div>
+        <p class="highlight">What is the correct order of the numbers, from the lowest to the greatest? <strong class="important">Click the button</strong>            to see the answer!</p>
+        <ul class="list-unstyled lead list-inline" id="listNumbers">
+            <li v-for="n in numbersToOrder" class="alert alert-warning btn-game">
+                <animated-integer v-bind:value="n"></animated-integer>
+            </li>
+        </ul>
+        <p v-if="!showResponse">
+            <button id="showResponse" class="btn btn-primary btn-lg" v-on:click="show">Show me the correct answer!</button>
+        </p>
+        <transition name="fade">
+            <div v-if="showResponse">
+                <h3 class="text-success">Correct answer</h3>
+                <ul class="list-unstyled lead list-inline" id="listAnswers">
+                    <li v-for="n in orderedNumbers" class="alert alert-success btn-game">
+                        {{ n }}
+                    </li>
+                </ul>
+                <hr>
+                <p class="lead ">
+                    Next time I want to play with
+                    <input type="number" v-model="newHowMany" class="howManyInput" min="2 " max="90 "> numbers!<br>
+                    <button @click="playAgain() " class="btn btn-lg btn-primary ">Play again</button>
+                </p>
+            </div>
+        </transition>
+    </div>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./node_modules/underscore/underscore-min.js"></script>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script src="./node_modules/tween.js/src/Tween.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/show-response.js"></script>
+</body>
+
+</html>

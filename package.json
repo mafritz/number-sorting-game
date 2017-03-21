@@ -1,0 +1,21 @@
+{
+  "name": "number-sorting-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "jquery-ui": "^1.12.1",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.0",
+    "underscore": "^1.8.3",
+    "vue": "^2.2.4",
+    "tween.js": "^16.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mattia A. Fritz",
+  "license": "ISC"
+}
