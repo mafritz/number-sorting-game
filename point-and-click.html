@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="./"><i class="fa fa-book" aria-hidden="true"></i> Presentation</a></li>
-                    <li><a href="./show-response.html"><i class="fa fa-eye" aria-hidden="true"></i> Show Response</a></li>
+                    <li><a href="./write-response.html"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Write Response</a></li>
                     <li class="active"><a href="./point-and-click.html"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Point and Click</a></li>
                     <li><a href="./drag-and-drop.html"><i class="fa fa-arrows" aria-hidden="true"></i> Drag and Drop</a></li>
                 </ul>
@@ -66,7 +66,7 @@
                 </div>
                 <div v-if="!isRight">
                     <h2 class="alert alert-danger lead text-center">
-                        <i class="fa fa-times"></i> Nope! The expected order was {{ correctAnswer }}
+                        <i class="fa fa-times"></i> Nope! The expected order was {{ orderedNumbers.join(", ") }}
                     </h2>
                 </div>
                 <hr>

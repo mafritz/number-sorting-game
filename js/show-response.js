@@ -6,7 +6,10 @@ var appShowResponse = new Vue({
         min: 1,
         max: 5,
         orderedNumbers: [],
-        animatedNumbers: []
+        animatedNumbers: [],
+        yourAnswer: '',
+        userOrder: null,
+        isRight: false
     },
     computed: {
         numbersToOrder: function () {
@@ -15,10 +18,16 @@ var appShowResponse = new Vue({
     },
     methods: {
         show: function () {
+            this.userOrder = this.yourAnswer.replace(/\s+/g, ' ').trim().split(" ").map(function (n) {
+                return +n;
+            });
             this.orderedNumbers = getSortedNumbers(this.numbersToOrder);
+            this.isRight = compare(this.numbersToOrder, this.userOrder);
+            console.log(this.orderedNumbers, this.userOrder, this.isRight);
             this.showResponse = true;
         },
         playAgain: function (howMany, min, max) {
+            this.howMany = this.min = this.max = 0;
             this.howMany = +howMany;
             this.min = +min;
             this.max = +max;
@@ -26,6 +35,8 @@ var appShowResponse = new Vue({
             this.orderedNumbers = getSortedNumbers(this.numbersToOrder);
             this.showResponse = false;
             this.errors = [];
+            this.yourAnswer = '';
+            document.getElementById("inputAnswer").focus();
         }
     }
 });

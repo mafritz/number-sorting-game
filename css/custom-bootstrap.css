@@ -6734,6 +6734,18 @@ a.navbar-brand {
   margin: 20px 8px;
   display: block;
 }
+.input-game {
+  font-size: 30px;
+  font-family: 'Baloo Bhaina', cursive;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  word-spacing: 10px;
+  border: 1px solid #CCC;
+}
+.input-game:focus {
+  border: 1px solid #337ab7;
+}
 .animatedInteger {
   padding-left: 10px;
   padding-right: 10px;

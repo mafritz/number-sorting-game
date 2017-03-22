@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Show Response version of the Number Sorting Game</title>
+    <title>Write Response version of the Number Sorting Game</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="./"><i class="fa fa-book" aria-hidden="true"></i> Presentation</a></li>
-                    <li class="active"><a href="./show-response.html"><i class="fa fa-eye" aria-hidden="true"></i> Show Response</a></li>
+                    <li class="active"><a href="./write-response.html"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Write Response</a></li>
                     <li><a href="./point-and-click.html"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Point and Click</a></li>
                     <li><a href="./drag-and-drop.html"><i class="fa fa-arrows" aria-hidden="true"></i> Drag and Drop</a></li>
                 </ul>
@@ -41,28 +41,37 @@
 
     <div class="container text-center" id="app">
         <div class="page-header">
-            <h1><i class="fa fa-eye" aria-hidden="true"></i> Show Response version</h1>
+            <h1><i class="fa fa-keyboard-o" aria-hidden="true"></i> Write Response version</h1>
         </div>
-        <p class="highlight">What is the correct order of the numbers, from the lowest to the greatest? <strong class="important">Click the button</strong>            to see the answer!</p>
+        <p class="highlight"><span class="important">Write the numbers</span> in the correct ascending order separated by a <kbd>space</kbd> and
+            press <kbd>enter</kbd> or one of the button below when your are done!</p>
         <ul class="list-unstyled lead list-inline" id="listNumbers">
             <li v-for="n in numbersToOrder" class="alert alert-warning btn-game">
                 <animated-integer v-bind:value="n"></animated-integer>
             </li>
         </ul>
-        <p v-if="!showResponse">
-            <button id="showResponse" class="btn btn-primary btn-lg" v-on:click="show">Show me the correct answer!</button>
-        </p>
+        <h3>Your answer</h3>
+        <form v-on:submit.prevent="show">
+            <input inputmode="numeric" class="input-game text-center" v-model.trim="yourAnswer" v-bind:disabled="showResponse" id="inputAnswer"
+                required autocomplete="off" autofocus>
+        </form>
+
         <transition name="fade">
             <div v-if="showResponse">
-                <h3 class="text-success">Correct answer</h3>
-                <ul class="list-unstyled lead list-inline" id="listAnswers">
-                    <li v-for="n in orderedNumbers" class="alert alert-success btn-game">
-                        {{ n }}
-                    </li>
-                </ul>
+                <div v-if="isRight">
+                    <h2 class="alert alert-success lead text-center">
+                        <i class="fa fa-check"></i> Yes! Your order is correct!
+                    </h2>
+                </div>
+                <div v-if="!isRight">
+                    <h2 class="alert alert-danger lead text-center">
+                        <i class="fa fa-times"></i> Nope! The expected order was {{ orderedNumbers.join(", ") }}
+                    </h2>
+                </div>
                 <hr>
                 <play-again v-bind:numbers="howMany" v-bind:min="min" v-bind:max="max" v-on:play="playAgain"></play-again>
             </div>
+
         </transition>
     </div>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>

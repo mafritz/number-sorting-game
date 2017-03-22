@@ -22,6 +22,7 @@ var app = new Vue({
             this.showResponse = true;
         },
         playAgain: function (howMany, min, max) {
+            this.howMany = this.min = this.max = 0;
             this.howMany = +howMany;
             this.min = +min;
             this.max = +max;

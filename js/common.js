@@ -1,4 +1,7 @@
 function getNumbers(howMany, lowerLimit, upperLimit) {
+    if (!howMany || !lowerLimit || !upperLimit) {
+        return false;
+    }
     var numbersToOrder = [];
     //Get unique random numbers
     while (numbersToOrder.length < howMany) {
@@ -101,10 +104,8 @@ Vue.component('animated-integer', {
 Vue.component('play-again', {
     template: `
     <form v-on:submit.prevent="play">
-        <div class="alert alert-danger lead" v-if="errors.length">
-            <ul class="list-unstyled">
-                <li v-for="e in errors">{{ e }}</li>
-            </ul>
+        <div v-if="errors.length">
+            <div class="alert alert-danger lead" v-for="e in errors">{{ e }}</div>
         </div>
         <p class="lead ">
             Next time I want to play with
@@ -145,6 +146,10 @@ Vue.component('play-again', {
                 this.errors.push('Provide different values for the minimum and maximum limits of the digits');
             }
 
+            if (this.numbers < 2) {
+                this.errors.push('You need to play at least with two numbers to make a sorting!');
+            }
+
             if (this.max < this.min) {
                 var max = this.min;
                 var min = this.max;
@@ -153,7 +158,7 @@ Vue.component('play-again', {
             }
 
             if (this.min + this.numbers - 1 > this.max) {
-                this.errors.push('The gap between the minimum and maximum limits is not enough to generate ' + this.numbers + ' different numbers');
+                this.errors.push('Sorry, I can\'t generate  ' + this.numbers + ' unique numbers between ' + this.min + ' and ' + this.max + '!');
             }
             return this.errors;
         }
