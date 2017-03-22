@@ -5078,6 +5078,17 @@ a.thumbnail.active {
 .alert-danger .alert-link {
   color: #843534;
 }
+.alert-primary {
+  background-color: #337ab7;
+  border-color: #286090;
+  color: #FFF;
+}
+.alert-primary hr {
+  border-top-color: #23527c;
+}
+.alert-primary .alert-link {
+  color: #e6e6e6;
+}
 @-webkit-keyframes progress-bar-stripes {
   from {
     background-position: 40px 0;
@@ -6773,7 +6784,7 @@ hr.baseline {
   overflow: hidden;
 }
 input.howManyInput {
-  width: 60px;
+  min-width: 60px;
   text-align: center;
   border: 1px solid #CCC;
   margin-bottom: 20px;

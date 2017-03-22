@@ -34,6 +34,18 @@ function getNumbersAsString(numbersToShow) {
     return numbersToShow.join(", ");
 }
 
+function formatNumber(nStr) {
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '\'' + '$2');
+    }
+    return x1 + x2;
+}
+
 //Vue
 // This complex tweening logic can now be reused between
 // any integers we may wish to animate in our application.
@@ -62,17 +74,7 @@ Vue.component('animated-integer', {
         this.tween(0, this.value);
     },
     filters: {
-        formatNumber: function (nStr) {
-            nStr += '';
-            x = nStr.split('.');
-            x1 = x[0];
-            x2 = x.length > 1 ? '.' + x[1] : '';
-            var rgx = /(\d+)(\d{3})/;
-            while (rgx.test(x1)) {
-                x1 = x1.replace(rgx, '$1' + '\'' + '$2');
-            }
-            return x1 + x2;
-        }
+        formatNumber: formatNumber
     },
     methods: {
         tween: function (startValue, endValue) {
@@ -105,11 +107,11 @@ Vue.component('play-again', {
     template: `
     <form v-on:submit.prevent="play">
         <div v-if="errors.length">
-            <div class="alert alert-danger lead" v-for="e in errors">{{ e }}</div>
+            <div class="text-danger lead" v-for="e in errors">{{ e }}</div>
         </div>
         <p class="lead ">
             Next time I want to play with
-            <input type="number" v-model.number="numbers" class="howManyInput" required> numbers between <input type="number" v-model.number="min" class="howManyInput" required> and <input type="number" v-model.number="max" class="howManyInput"  required><br>
+            <input type="number" v-model.number="numbers" class="howManyInput" autocomplete="off" v-bind:style="inputWidth(numbers)" required> numbers between <input type="number" v-model.number="min" class="howManyInput" autocomplete="off" v-bind:style="inputWidth(min)" required> and <input type="number" v-model.number="max" v-bind:style="inputWidth(max)" class="howManyInput" autocomplete="off" required><br>
             <button type="submit" class="btn btn-lg btn-primary ">Play again</button>
         </p>
     </form>
@@ -139,6 +141,11 @@ Vue.component('play-again', {
             if (!this.validation().length) {
                 this.$emit('play', this.numbers, this.min, this.max);
             }
+        },
+        inputWidth: function (n) {
+            return {
+                width: 40 + (n.toString().length * 15) + 'px',
+            };
         },
         validation: function () {
             this.errors = [];

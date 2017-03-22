@@ -11,7 +11,7 @@ var appPointAndClick = new Vue({
     },
     computed: {
         correctAnswer: function () {
-            return getSortedNumbers(this.numbersToOrder).join(", ");
+            return getSortedNumbers(this.numbersToOrder);
         },
         numbersToOrder: function () {
             return getNumbers(this.howMany, this.min, this.max);

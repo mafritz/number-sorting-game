@@ -46,14 +46,28 @@
         <p class="highlight"><span class="important">Write the numbers</span> in the correct ascending order separated by a <kbd>space</kbd> and
             press <kbd>enter</kbd> or one of the button below when your are done!</p>
         <ul class="list-unstyled lead list-inline" id="listNumbers">
-            <li v-for="n in numbersToOrder" class="alert alert-warning btn-game">
+            <li v-for="n in numbersToOrder" class="alert btn-game" v-bind:class="itemClass(n)">
                 <animated-integer v-bind:value="n"></animated-integer>
             </li>
         </ul>
-        <h3>Your answer</h3>
+        <h3>
+            <span class="text-info" v-if="userOrder.length < howMany">{{ howMany - userOrder.length }} number(s) still to order</span>
+            <span class="text-danger" v-if="userOrder.length > howMany">You have {{ userOrder.length - howMany }} extra number(s)</span>
+            <span class="text-success" v-if="userOrder.length == howMany">No more numbers to order</span>
+        </h3>
         <form v-on:submit.prevent="show">
-            <input inputmode="numeric" class="input-game text-center" v-model.trim="yourAnswer" v-bind:disabled="showResponse" id="inputAnswer"
-                required autocomplete="off" autofocus>
+            <div class="form-group">
+                <input inputmode="numeric" class="input-game text-center" v-model="yourAnswer" v-bind:disabled="showResponse" id="inputAnswer"
+                    required autocomplete="off" autofocus>
+            </div>
+            <ul class="list-unstyled list-inline" v-if="!showResponse">
+                <li>
+                    <button type="submit" class="btn btn-primary">Check your answer</button>
+                </li>
+                <li>
+                    <button class="btn btn-default" v-on:click="show">I quit, show my the answer</button>
+                </li>
+            </ul>
         </form>
 
         <transition name="fade">
@@ -65,8 +79,14 @@
                 </div>
                 <div v-if="!isRight">
                     <h2 class="alert alert-danger lead text-center">
-                        <i class="fa fa-times"></i> Nope! The expected order was {{ orderedNumbers.join(", ") }}
+                        <i class="fa fa-times"></i> I am sorry, your order is not correct!
                     </h2>
+                    <h3 class="text-info">Here you can see the correct order</h3>
+                    <ul class="list-unstyled lead list-inline" id="listAnswers">
+                        <li v-for="n in orderedNumbers" class="btn-game alert alert-info">
+                            <animated-integer v-bind:value="n"></animated-integer>
+                        </li>
+                    </ul>
                 </div>
                 <hr>
                 <play-again v-bind:numbers="howMany" v-bind:min="min" v-bind:max="max" v-on:play="playAgain"></play-again>
