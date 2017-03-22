@@ -17,6 +17,9 @@ var appPointAndClick = new Vue({
             return getNumbers(this.howMany, this.min, this.max);
         }
     },
+    filters: {
+        formatNumber: formatNumber
+    },
     methods: {
         show: function () {
             this.orderedNumbers = getSortedNumbers(this.numbersToOrder);
@@ -38,12 +41,12 @@ var appPointAndClick = new Vue({
         },
         addNumber: function (event) {
             if (event.target.tagName === 'BUTTON') {
-                this.replyNumbers.push(event.target.childNodes[0].innerHTML);
+                this.replyNumbers.push(+event.target.childNodes[0].innerHTML.replace(/\D/g, ''));
                 event.target.disabled = true;
                 event.target.classList.remove('alert-warning');
                 event.target.classList.add('btn-game-disabled');
             } else {
-                this.replyNumbers.push(event.target.innerHTML);
+                this.replyNumbers.push(+event.target.innerHTML.replace(/\D/g, ''));
                 event.target.parentNode.disabled = true;
                 event.target.parentNode.classList.remove('alert-warning');
                 event.target.parentNode.classList.add('btn-game-disabled');

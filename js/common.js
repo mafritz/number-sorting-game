@@ -11,9 +11,10 @@ function getNumbers(howMany, lowerLimit, upperLimit) {
         }
     }
 
-    console.log(numbersToOrder.slice(0));
+    var isAlreadyInOrder = compare(numbersToOrder, numbersToOrder);
+
     //Check that they are not already in the correct order
-    while (compare(numbersToOrder, numbersToOrder)) {
+    while (isAlreadyInOrder) {
         numbersToOrder = _.shuffle(numbersToOrder);
     }
     return numbersToOrder;
@@ -153,8 +154,8 @@ Vue.component('play-again', {
                 this.errors.push('Provide different values for the minimum and maximum limits of the digits');
             }
 
-            if (this.numbers < 2) {
-                this.errors.push('You need to play at least with two numbers to make a sorting!');
+            if (this.numbers < 3) {
+                this.errors.push('You need to play at least with 3 numbers to have different sorting!');
             }
 
             if (this.max < this.min) {
