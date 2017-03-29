@@ -1,7 +1,9 @@
 var appPointAndClick = new Vue({
     el: '#app',
     data: {
+        warmUp: true,
         showResponse: false,
+        showFeedback: false,
         howMany: 5,
         min: 1,
         max: 5,
@@ -24,6 +26,16 @@ var appPointAndClick = new Vue({
         show: function () {
             this.orderedNumbers = getSortedNumbers(this.numbersToOrder);
             this.showResponse = true;
+            this.showFeedback = true;
+        },
+        feedback: function () {
+            this.orderedNumbers = getSortedNumbers(this.numbersToOrder);
+            this.showResponse = true;
+            this.showFeedback = false;
+            $('#listNumbers button')
+                .addClass('btn-game-disabled')
+                .removeClass('alert-warning')
+                .attr('disabled', 'disabled');
         },
         playAgain: function (howMany, min, max) {
             this.howMany = this.min = this.max = 0;
@@ -33,6 +45,8 @@ var appPointAndClick = new Vue({
             this.numbersToOrder = getNumbers(this.howMany, this.min, this.max);
             this.orderedNumbers = getSortedNumbers(this.numbersToOrder);
             this.showResponse = false;
+            this.showFeedback = false;
+            this.warmUp = false;
             this.replyNumbers = [];
             $('#listNumbers button')
                 .removeClass('btn-game-disabled')
@@ -41,12 +55,12 @@ var appPointAndClick = new Vue({
         },
         addNumber: function (event) {
             if (event.target.tagName === 'BUTTON') {
-                this.replyNumbers.push(+event.target.childNodes[0].innerHTML.replace(/\D/g, ''));
+                this.replyNumbers.push(+event.target.childNodes[0].innerHTML.replace(/\D-/g, ''));
                 event.target.disabled = true;
                 event.target.classList.remove('alert-warning');
                 event.target.classList.add('btn-game-disabled');
             } else {
-                this.replyNumbers.push(+event.target.innerHTML.replace(/\D/g, ''));
+                this.replyNumbers.push(+event.target.innerHTML.replace(/\D-/g, ''));
                 event.target.parentNode.disabled = true;
                 event.target.parentNode.classList.remove('alert-warning');
                 event.target.parentNode.classList.add('btn-game-disabled');
@@ -57,6 +71,7 @@ var appPointAndClick = new Vue({
             if (+this.howMany === +this.replyNumbers.length) {
                 this.isRight = compare(this.numbersToOrder, this.replyNumbers);
                 this.showResponse = true;
+                this.showFeedback = true;
             }
         }
     }

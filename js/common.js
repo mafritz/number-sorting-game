@@ -1,7 +1,4 @@
 function getNumbers(howMany, lowerLimit, upperLimit) {
-    if (!howMany || !lowerLimit || !upperLimit) {
-        return false;
-    }
     var numbersToOrder = [];
     //Get unique random numbers
     while (numbersToOrder.length < howMany) {

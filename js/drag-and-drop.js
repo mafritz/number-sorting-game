@@ -1,6 +1,7 @@
 var app = new Vue({
     el: '#app',
     data: {
+        warmUp: true,
         showResponse: false,
         howMany: 5,
         min: 1,
@@ -10,7 +11,7 @@ var app = new Vue({
     },
     computed: {
         correctAnswer: function () {
-            return getSortedNumbers(this.numbersToOrder).join(", ");
+            return getSortedNumbers(this.numbersToOrder);
         },
         numbersToOrder: function () {
             return getNumbers(this.howMany, this.min, this.max);
@@ -29,11 +30,12 @@ var app = new Vue({
             this.numbersToOrder = getNumbers(this.howMany, this.min, this.max);
             this.orderedNumbers = getSortedNumbers(this.numbersToOrder);
             this.showResponse = false;
+            this.warmUp = false;
         },
         checkResponseDragAndDrop: function () {
             var replyNumbers = [];
             $("#listNumbers li").each(function () {
-                replyNumbers.push(+$(this).text().replace(/\D/g, ''));
+                replyNumbers.push(+$(this).text().replace(/\D-/g, ''));
             });
             if (compare(this.numbersToOrder, replyNumbers)) {
                 this.showResponse = true;

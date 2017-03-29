@@ -43,7 +43,11 @@
         <div class="page-header">
             <h1><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Point and Click version</h1>
         </div>
-        <p class="highlight"><strong class="important">Click on the numbers</strong> in the correct ascending order, from the lowest to the greatest.</p>
+        <p class="highlight">
+            <span class="label label-warning" v-if="warmUp">Warm-up</span>
+            <strong class="important">Click on the numbers</strong> in the correct ascending order, from the lowest to the
+            greatest.
+        </p>
         <ul class="list-unstyled lead list-inline" id="listNumbers">
             <li v-for="n in numbersToOrder">
                 <button class="btn btn-lg btn-game alert alert-warning" @click="addNumber">
@@ -51,6 +55,9 @@
                 </button>
             </li>
         </ul>
+        <div v-if="!showResponse">
+            <button class="btn btn-default btn-lg" @click="feedback">I quit, show me the correct answer!</button>
+        </div>
         <h3>Your answer</h3>
         <ul class="list-unstyled lead list-inline" id="listAnswers">
             <li v-for="n in replyNumbers">
@@ -59,31 +66,30 @@
                 </h2>
             </li>
         </ul>
-        <transition name="fade">
-            <div v-if="showResponse">
-                <div v-if="isRight">
-                    <h2 class="alert alert-success lead text-center">
-                        <i class="fa fa-check"></i> Yes! Your order is correct!
-                    </h2>
-                </div>
-                <div v-if="!isRight">
-                    <h2 class="alert alert-danger lead text-center">
-                        <i class="fa fa-times"></i> I am sorry, your order is not correct!
-                    </h2>
-                    <h3 class="text-info">Here you can see the correct order</h3>
-                    <ul class="list-unstyled lead list-inline" id="listSolution">
-                        <li v-for="s in correctAnswer">
-                            <h2 class="btn-game alert alert-info">
-                                <animated-integer v-bind:value="s"></animated-integer>
-                            </h2>
-                        </li>
-                    </ul>
-                </div>
-                <hr>
-                <play-again v-bind:numbers="howMany" v-bind:min="min" v-bind:max="max" v-on:play="playAgain"></play-again>
+        <div v-if="showResponse">
+            <div v-if="isRight && showFeedback">
+                <h2 class="alert alert-success lead text-center">
+                    <i class="fa fa-check"></i> Yes! Your order is correct!
+                </h2>
             </div>
-
-        </transition>
+            <div v-if="!isRight && showFeedback">
+                <h2 class="alert alert-danger lead text-center">
+                    <i class="fa fa-times"></i> I am sorry, your order is not correct!
+                </h2>
+            </div>
+            <h3 class="text-info">Here you can see the correct order</h3>
+            <ul class="list-unstyled lead list-inline" id="listSolution">
+                <li v-for="s in correctAnswer">
+                    <h2 class="btn-game alert alert-info">
+                        <animated-integer v-bind:value="s"></animated-integer>
+                    </h2>
+                </li>
+            </ul>
+            <hr>
+            <div class="lead text text-info" v-if="warmUp"><i class="fa fa-info-circle text-info"></i> You can adapt the difficulty of your next game by changing the values.
+            </div>
+            <play-again v-bind:numbers="howMany" v-bind:min="min" v-bind:max="max" v-on:play="playAgain"></play-again>
+        </div>
     </div>
 
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>

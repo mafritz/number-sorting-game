@@ -44,15 +44,17 @@
         <div class="page-header">
             <h1><i class="fa fa-arrows" aria-hidden="true"></i> Drag and Drop version</h1>
         </div>
-        <p class="highlight"><strong class="important">Drag and drop</strong> the numbers to compose the correct ascending order, from the lowest
-            to the greatest.</p>
+        <p class="highlight">
+            <span class="label label-warning" v-if="warmUp">Warm-up</span>
+            <strong class="important">Drag and drop</strong> the numbers to compose the correct ascending order, from the
+            lowest to the greatest.</p>
         <ul class="list-unstyled lead list-inline" id="listNumbers">
             <li v-for="n in numbersToOrder" class="alert alert-warning btn-game btn-hover-state">
                 <animated-integer v-bind:value="n"></animated-integer>
             </li>
         </ul>
         <div v-if="!showResponse">
-            <button class="btn btn-danger btn-lg" @click="showFeedback">I quit, show me the correct answer!</button>
+            <button class="btn btn-default btn-lg" @click="showFeedback">I quit, show me the correct answer!</button>
         </div>
         <div v-if="showResponse && isRight">
             <h2 class="alert alert-success lead text-center">
@@ -60,11 +62,19 @@
             </h2>
         </div>
         <div v-if="showResponse && !isRight">
-            <h2 class="alert alert-info">
-                <i class="fa fa-info-circle"></i> The correct answer was {{ correctAnswer }}</h2>
+            <h3 class="text-info">Here you can see the correct order</h3>
+            <ul class="list-unstyled lead list-inline" id="listSolution">
+                <li v-for="s in correctAnswer">
+                    <h2 class="btn-game alert alert-info">
+                        <animated-integer v-bind:value="s"></animated-integer>
+                    </h2>
+                </li>
+            </ul>
         </div>
-        <div v-if="showResponse ">
+        <div v-if="showResponse">
             <hr>
+            <div class="lead text text-info" v-if="warmUp"><i class="fa fa-info-circle text-info"></i> You can adapt the difficulty of your next game by changing the values.
+            </div>
             <play-again v-bind:numbers="howMany" v-bind:min="min" v-bind:max="max" v-on:play="playAgain"></play-again>
         </div>
     </div>

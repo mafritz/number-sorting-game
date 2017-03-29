@@ -43,8 +43,9 @@
         <div class="page-header">
             <h1><i class="fa fa-keyboard-o" aria-hidden="true"></i> Write Response version</h1>
         </div>
-        <p class="highlight"><span class="important">Write the numbers</span> in the correct ascending order separated by a <kbd>space</kbd> and
-            press <kbd>enter</kbd> or one of the button below when your are done!</p>
+        <p class="highlight">
+            <span class="label label-warning" v-if="warmUp">Warm-up</span>
+            <span class="important">Write the numbers</span> in the correct ascending order separated by a <kbd>space</kbd>            and press <kbd>enter</kbd> or one of the button below when your are done!</p>
         <ul class="list-unstyled lead list-inline" id="listNumbers">
             <li v-for="n in numbersToOrder" class="alert btn-game" v-bind:class="itemClass(n)">
                 <animated-integer v-bind:value="n"></animated-integer>
@@ -62,23 +63,23 @@
             </div>
             <ul class="list-unstyled list-inline" v-if="!showResponse">
                 <li>
-                    <button type="submit" class="btn btn-primary">Check your answer</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Check your answer</button>
                 </li>
                 <li>
-                    <button class="btn btn-default" v-on:click="show">I quit, show my the answer</button>
+                    <button class="btn btn-default btn-lg" v-on:click="feedback">I quit, show my the answer</button>
                 </li>
             </ul>
         </form>
 
         <transition name="fade">
             <div v-if="showResponse">
-                <div v-if="isRight">
+                <div v-if="isRight && showFeedback">
                     <h2 class="alert alert-success lead text-center">
                         <i class="fa fa-check"></i> Yes! Your order is correct!
                     </h2>
                 </div>
-                <div v-if="!isRight">
-                    <h2 class="alert alert-danger lead text-center">
+                <div>
+                    <h2 class="alert alert-danger lead text-center" v-if="!isRight && showFeedback">
                         <i class="fa fa-times"></i> I am sorry, your order is not correct!
                     </h2>
                     <h3 class="text-info">Here you can see the correct order</h3>
@@ -89,6 +90,9 @@
                     </ul>
                 </div>
                 <hr>
+                <div class="lead text text-info" v-if="warmUp"><i class="fa fa-info-circle text-info"></i> You can adapt the difficulty of your next game by changing the
+                    values.
+                </div>
                 <play-again v-bind:numbers="howMany" v-bind:min="min" v-bind:max="max" v-on:play="playAgain"></play-again>
             </div>
 
@@ -100,7 +104,7 @@
     <script src="./node_modules/vue/dist/vue.min.js"></script>
     <script src="./node_modules/tween.js/src/Tween.js"></script>
     <script src="./js/common.js"></script>
-    <script src="./js/show-response.js"></script>
+    <script src="./js/write-response.js"></script>
 </body>
 
 </html>
