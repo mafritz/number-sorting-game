@@ -1,101 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <title>Drag and Drop version of the Numer Sorting Game</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="./css/custom-bootstrap.css" rel="stylesheet">
-    <link href="./node_modules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="./node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Droid+Sans" rel="stylesheet">
-    <link href="./vendor/jquery-ui-1.12.1.custom/jquery-ui.min.css" rel="stylesheet">
-</head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="./css/custom-bootstrap.css" rel="stylesheet" />
+    <link href="./vendor/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />
+    <link
+      href="./vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Droid+Sans"
+      rel="stylesheet"
+    />
+    <link
+      href="./vendor/jquery-ui-1.12.1.custom/jquery-ui.min.css"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-                <a class="navbar-brand" href="./"><i class="fa fa-sort-numeric-asc text-success" aria-hidden="true"></i> Number Sorting Game</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="./"><i class="fa fa-book" aria-hidden="true"></i> Presentation</a></li>
-                    <li><a href="./write-response.html"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Write Response</a></li>
-                    <li><a href="./point-and-click.html"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Point and Click</a></li>
-                    <li class="active"><a href="./drag-and-drop.html"><i class="fa fa-arrows" aria-hidden="true"></i> Drag and Drop</a></li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target=".navbar-ex1-collapse"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./"
+            ><i
+              class="fa fa-sort-numeric-asc text-success"
+              aria-hidden="true"
+            ></i>
+            Number Sorting Game</a
+          >
         </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="./"
+                ><i class="fa fa-book" aria-hidden="true"></i> Presentation</a
+              >
+            </li>
+            <li>
+              <a href="./write-response.html"
+                ><i class="fa fa-keyboard-o" aria-hidden="true"></i> Write
+                Response</a
+              >
+            </li>
+            <li>
+              <a href="./point-and-click.html"
+                ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Point
+                and Click</a
+              >
+            </li>
+            <li class="active">
+              <a href="./drag-and-drop.html"
+                ><i class="fa fa-arrows" aria-hidden="true"></i> Drag and
+                Drop</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
     </nav>
 
     <div class="container text-center" id="app">
-        <div class="page-header">
-            <h1><i class="fa fa-arrows" aria-hidden="true"></i> Drag and Drop version</h1>
-        </div>
-        <p class="highlight">
-            <span class="label label-warning" v-if="warmUp">Warm-up</span>
-            <strong class="important">Drag and drop</strong> the numbers to compose the correct ascending order, from the
-            lowest to the greatest.</p>
-        <ul class="list-unstyled lead list-inline" id="listNumbers">
-            <li v-for="n in numbersToOrder" class="alert alert-warning btn-game btn-hover-state">
-                <animated-integer v-bind:value="n"></animated-integer>
-            </li>
-        </ul>
-        <div v-if="!showResponse">
-            <button class="btn btn-default btn-lg" @click="showFeedback">I quit, show me the correct answer!</button>
-        </div>
-        <div v-if="showResponse && isRight">
-            <h2 class="alert alert-success lead text-center">
-                <i class="fa fa-check "></i> Yes! Your order is correct!
+      <div class="page-header">
+        <h1>
+          <i class="fa fa-arrows" aria-hidden="true"></i> Drag and Drop version
+        </h1>
+      </div>
+      <p class="highlight">
+        <span class="label label-warning" v-if="warmUp">Warm-up</span>
+        <strong class="important">Drag and drop</strong> the numbers to compose
+        the correct ascending order, from the lowest to the greatest.
+      </p>
+      <ul class="list-unstyled lead list-inline" id="listNumbers">
+        <li
+          v-for="n in numbersToOrder"
+          class="alert alert-warning btn-game btn-hover-state"
+        >
+          <animated-integer v-bind:value="n"></animated-integer>
+        </li>
+      </ul>
+      <div v-if="!showResponse">
+        <button class="btn btn-default btn-lg" @click="showFeedback">
+          I quit, show me the correct answer!
+        </button>
+      </div>
+      <div v-if="showResponse && isRight">
+        <h2 class="alert alert-success lead text-center">
+          <i class="fa fa-check"></i> Yes! Your order is correct!
+        </h2>
+      </div>
+      <div v-if="showResponse && !isRight">
+        <h3 class="text-info">Here you can see the correct order</h3>
+        <ul class="list-unstyled lead list-inline" id="listSolution">
+          <li v-for="s in correctAnswer">
+            <h2 class="btn-game alert alert-info">
+              <animated-integer v-bind:value="s"></animated-integer>
             </h2>
+          </li>
+        </ul>
+      </div>
+      <div v-if="showResponse">
+        <hr />
+        <div class="lead text text-info" v-if="warmUp">
+          <i class="fa fa-info-circle text-info"></i> You can adapt the
+          difficulty of your next game by changing the values.
         </div>
-        <div v-if="showResponse && !isRight">
-            <h3 class="text-info">Here you can see the correct order</h3>
-            <ul class="list-unstyled lead list-inline" id="listSolution">
-                <li v-for="s in correctAnswer">
-                    <h2 class="btn-game alert alert-info">
-                        <animated-integer v-bind:value="s"></animated-integer>
-                    </h2>
-                </li>
-            </ul>
-        </div>
-        <div v-if="showResponse">
-            <hr>
-            <div class="lead text text-info" v-if="warmUp"><i class="fa fa-info-circle text-info"></i> You can adapt the difficulty of your next game by changing the values.
-            </div>
-            <play-again v-bind:numbers="howMany" v-bind:min="min" v-bind:max="max" v-on:play="playAgain"></play-again>
-        </div>
+        <play-again
+          v-bind:numbers="howMany"
+          v-bind:min="min"
+          v-bind:max="max"
+          v-on:play="playAgain"
+        ></play-again>
+      </div>
     </div>
     <footer>
-        <div class="container">
-            <p class="text-right">
-                <time>Last update 30.05.2017</time>
-                <a href="http://tecfa.unige.ch/perso/mafritz">
-                    <img id="maf-logo" src="./images/logo.png" title="Mattia A. Fritz">
-                </a>
-            </p>
-        </div>
+      <div class="container">
+        <p class="text-right">
+          <time>Last update 30.05.2017</time>
+          <a href="http://tecfa.unige.ch/perso/mafritz">
+            <img
+              id="maf-logo"
+              src="./images/logo.png"
+              title="Mattia A. Fritz"
+            />
+          </a>
+        </p>
+      </div>
     </footer>
-    <script src="./node_modules/jquery/dist/jquery.min.js "></script>
+    <script src="./vendor/jquery/jquery.min.js "></script>
     <script src="./vendor/jquery-ui-1.12.1.custom/jquery-ui.min.js "></script>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js "></script>
-    <script src="./node_modules/underscore/underscore-min.js "></script>
-    <script src="./node_modules/vue/dist/vue.min.js "></script>
-    <script src="./node_modules/tween.js/src/Tween.js"></script>
+    <script src="./vendor/bootstrap/bootstrap.min.js "></script>
+    <script src="./vendor/underscore/underscore-min.js "></script>
+    <script src="./vendor/vuejs/vue.min.js "></script>
+    <script src="./vendor/tweenjs/Tween.js"></script>
     <script src="./js/common.js "></script>
     <script src="./js/drag-and-drop.js "></script>
-</body>
-
+  </body>
 </html>

@@ -1,182 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <title>Number Sorting Game(s)</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="./css/custom-bootstrap.css" rel="stylesheet">
-    <link href="./node_modules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="./node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Droid+Sans" rel="stylesheet">
-</head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="./css/custom-bootstrap.css" rel="stylesheet" />
+    <link href="./vendor/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />
+    <link
+      href="./vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Droid+Sans"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-                <a class="navbar-brand" href="./"><i class="fa fa-sort-numeric-asc text-success" aria-hidden="true"></i> Number Sorting Game</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="./"><i class="fa fa-book" aria-hidden="true"></i> Presentation</a></li>
-                    <li><a href="./write-response.html"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Write Response</a></li>
-                    <li><a href="./point-and-click.html"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Point and Click</a></li>
-                    <li><a href="./drag-and-drop.html"><i class="fa fa-arrows" aria-hidden="true"></i> Drag and Drop</a></li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target=".navbar-ex1-collapse"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./"
+            ><i
+              class="fa fa-sort-numeric-asc text-success"
+              aria-hidden="true"
+            ></i>
+            Number Sorting Game</a
+          >
         </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active">
+              <a href="./"
+                ><i class="fa fa-book" aria-hidden="true"></i> Presentation</a
+              >
+            </li>
+            <li>
+              <a href="./write-response.html"
+                ><i class="fa fa-keyboard-o" aria-hidden="true"></i> Write
+                Response</a
+              >
+            </li>
+            <li>
+              <a href="./point-and-click.html"
+                ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Point
+                and Click</a
+              >
+            </li>
+            <li>
+              <a href="./drag-and-drop.html"
+                ><i class="fa fa-arrows" aria-hidden="true"></i> Drag and
+                Drop</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
     </nav>
     <div class="container">
-        <div class="page-header">
-            <h1><i class="fa fa-sort-numeric-asc text-success" aria-hidden="true"></i> Number Sorting Game(s)</h1>
-        </div>
-        <div class="jumbotron">
-            <h1><i class="fa fa-gamepad" aria-hidden="true"></i> Different Interactions</h1>
-            <p class="lead">In this pages we present a simple game, in which users must find the correct order of random numbers, in <strong>3 versions</strong>,
-                which differ in the kind of interaction available, but use the same underlying logic. <strong>Try them now or read
-                on for further details!</strong></p>
-            <ul class="list-unstyled list-inline text-center">
-                <li>
-                    <a href="./write-response.html" class="btn btn-primary btn-lg btn-block"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Write Response version</a>
-                </li>
-                <li>
-                    <a href="./point-and-click.html" class="btn btn-primary btn-lg btn-block"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Point and Click version</a>
-                </li>
-                <li>
-                    <a href="./drag-and-drop.html" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrows" aria-hidden="true"></i> Drag and Drop version</a>
-                </li>
-            </ul>
-        </div>
+      <div class="page-header">
+        <h1>
+          <i class="fa fa-sort-numeric-asc text-success" aria-hidden="true"></i>
+          Number Sorting Game(s)
+        </h1>
+      </div>
+      <div class="jumbotron">
+        <h1>
+          <i class="fa fa-gamepad" aria-hidden="true"></i> Different
+          Interactions
+        </h1>
+        <p class="lead">
+          In this pages we present a simple game, in which users must find the
+          correct order of random numbers, in <strong>3 versions</strong>, which
+          differ in the kind of interaction available, but use the same
+          underlying logic.
+          <strong>Try them now or read on for further details!</strong>
+        </p>
+        <ul class="list-unstyled list-inline text-center">
+          <li>
+            <a
+              href="./write-response.html"
+              class="btn btn-primary btn-lg btn-block"
+              ><i class="fa fa-keyboard-o" aria-hidden="true"></i> Write
+              Response version</a
+            >
+          </li>
+          <li>
+            <a
+              href="./point-and-click.html"
+              class="btn btn-primary btn-lg btn-block"
+              ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Point and
+              Click version</a
+            >
+          </li>
+          <li>
+            <a
+              href="./drag-and-drop.html"
+              class="btn btn-primary btn-lg btn-block"
+              ><i class="fa fa-arrows" aria-hidden="true"></i> Drag and Drop
+              version</a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="container">
-        <div class="page-header">
-            <h2>Purpose of the examples</h2>
-        </div>
-        <p class="highlight">The aim of the site is to show, with a very simple web-based game, how the <strong class="important">interactive modality</strong>            may <strong>influence the learning processes</strong> depending on <strong class="important">what the user is prompted to do</strong>            in the game.
-        </p>
-        <p>This site is part of the material for the course <a href="https://edutechwiki.unige.ch/fr/STIC:STIC_I"><strong>STIC I</strong></a>            of the <a href="http://tecfalabs.unige.ch/maltt/">Master of Science in Learning and Teaching
-            Technologies</a>, whose aim is to teach basic programming and development skills for designing web-based applications
-            related to learning.
-        </p>
-        <hr class="baseline">
-        <div class="page-header">
-            <h2>General logic of the games</h2>
-        </div>
-        <div class="row">
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center lead">
-                <p><i class="fa fa-user-circle fa-3x text-info" aria-hidden="true"></i></p>
-                <p>Users will be shown 5 numbers between 1 and 5 in random order as a warm-up test.</p>
-            </div>
-
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center lead">
-                <p><i class="fa fa-sort-numeric-asc fa-3x text-info" aria-hidden="true"></i></p>
-                <p>They must sort them from the lowest to the greatest using the interactive modality of the given version.</p>
-            </div>
-
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center lead">
-                <p><i class="fa fa-tachometer fa-3x text-info" aria-hidden="true"></i></p>
-                <p>After the first play they will be able to modify the difficulty of the game (number and range of digits).</p>
-            </div>
-
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center lead">
-                <p><i class="fa fa-random fa-3x text-info" aria-hidden="true"></i></p>
-                <p>Each time they play, they will obtain different numbers with respect to the criteria they have set.</p>
-            </div>
-        </div>
-        <hr class="baseline">
-        <div class="page-header">
-            <h2>Different versions of the game, different interactions</h2>
+      <div class="page-header">
+        <h2>Purpose of the examples</h2>
+      </div>
+      <p class="highlight">
+        The aim of the site is to show, with a very simple web-based game, how
+        the <strong class="important">interactive modality</strong> may
+        <strong>influence the learning processes</strong> depending on
+        <strong class="important">what the user is prompted to do</strong> in
+        the game.
+      </p>
+      <p>
+        This site is part of the material for the course
+        <a href="https://edutechwiki.unige.ch/fr/STIC:STIC_I"
+          ><strong>STIC I</strong></a
+        >
+        of the
+        <a href="http://tecfalabs.unige.ch/maltt/"
+          >Master of Science in Learning and Teaching Technologies</a
+        >, whose aim is to teach basic programming and development skills for
+        designing web-based applications related to learning.
+      </p>
+      <hr class="baseline" />
+      <div class="page-header">
+        <h2>General logic of the games</h2>
+      </div>
+      <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center lead">
+          <p>
+            <i class="fa fa-user-circle fa-3x text-info" aria-hidden="true"></i>
+          </p>
+          <p>
+            Users will be shown 5 numbers between 1 and 5 in random order as a
+            warm-up test.
+          </p>
         </div>
 
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Write Response</h3>
-                    </div>
-                    <div class="panel-body lead">
-                        <p>
-                            <a href="./write-response.html">
-                                <img src="./images/show-response-screenshot.png" class="img-responsive">
-                            </a>
-                        </p>
-                        <p>In this version of the game, users must write the given numbers, in the expected order, using a text
-                            input.
-                        </p>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="./write-response.html" class="btn btn-primary btn-lg btn-block"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Write Response version</a>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Point and Click</h3>
-                    </div>
-                    <div class="panel-body lead">
-                        <p>
-                            <a href="./point-and-click.html">
-                                <img src="./images/point-and-click-screenshot.png" class="img-responsive">
-                            </a>
-                        </p>
-                        <p>In this version of the game, users must click on each given number, one after the other, in the correct
-                            order.
-                        </p>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="./point-and-click.html" class="btn btn-primary btn-lg btn-block"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Point and Click version</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-arrows" aria-hidden="true"></i> Drag and Drop</h3>
-                    </div>
-                    <div class="panel-body lead">
-                        <p>
-                            <a href="./drag-and-drop.html"><img src="./images/drag-and-drop-screenshot.png" class="img-responsive"></a>
-                        </p>
-                        <p>In this version of the game, users can reorder the given numbers using drag and drop gestures.</p>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="./drag-and-drop.html" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrows" aria-hidden="true"></i> Drag and Drop version</a>
-                    </div>
-                </div>
-            </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center lead">
+          <p>
+            <i
+              class="fa fa-sort-numeric-asc fa-3x text-info"
+              aria-hidden="true"
+            ></i>
+          </p>
+          <p>
+            They must sort them from the lowest to the greatest using the
+            interactive modality of the given version.
+          </p>
         </div>
-        <hr class="baseline">
+
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center lead">
+          <p>
+            <i class="fa fa-tachometer fa-3x text-info" aria-hidden="true"></i>
+          </p>
+          <p>
+            After the first play they will be able to modify the difficulty of
+            the game (number and range of digits).
+          </p>
+        </div>
+
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center lead">
+          <p><i class="fa fa-random fa-3x text-info" aria-hidden="true"></i></p>
+          <p>
+            Each time they play, they will obtain different numbers with respect
+            to the criteria they have set.
+          </p>
+        </div>
+      </div>
+      <hr class="baseline" />
+      <div class="page-header">
+        <h2>Different versions of the game, different interactions</h2>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <i class="fa fa-keyboard-o" aria-hidden="true"></i> Write
+                Response
+              </h3>
+            </div>
+            <div class="panel-body lead">
+              <p>
+                <a href="./write-response.html">
+                  <img
+                    src="./images/show-response-screenshot.png"
+                    class="img-responsive"
+                  />
+                </a>
+              </p>
+              <p>
+                In this version of the game, users must write the given numbers,
+                in the expected order, using a text input.
+              </p>
+            </div>
+            <div class="panel-footer">
+              <a
+                href="./write-response.html"
+                class="btn btn-primary btn-lg btn-block"
+                ><i class="fa fa-keyboard-o" aria-hidden="true"></i> Write
+                Response version</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Point
+                and Click
+              </h3>
+            </div>
+            <div class="panel-body lead">
+              <p>
+                <a href="./point-and-click.html">
+                  <img
+                    src="./images/point-and-click-screenshot.png"
+                    class="img-responsive"
+                  />
+                </a>
+              </p>
+              <p>
+                In this version of the game, users must click on each given
+                number, one after the other, in the correct order.
+              </p>
+            </div>
+            <div class="panel-footer">
+              <a
+                href="./point-and-click.html"
+                class="btn btn-primary btn-lg btn-block"
+                ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Point
+                and Click version</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <i class="fa fa-arrows" aria-hidden="true"></i> Drag and Drop
+              </h3>
+            </div>
+            <div class="panel-body lead">
+              <p>
+                <a href="./drag-and-drop.html"
+                  ><img
+                    src="./images/drag-and-drop-screenshot.png"
+                    class="img-responsive"
+                /></a>
+              </p>
+              <p>
+                In this version of the game, users can reorder the given numbers
+                using drag and drop gestures.
+              </p>
+            </div>
+            <div class="panel-footer">
+              <a
+                href="./drag-and-drop.html"
+                class="btn btn-primary btn-lg btn-block"
+                ><i class="fa fa-arrows" aria-hidden="true"></i> Drag and Drop
+                version</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="baseline" />
     </div>
     <footer>
-        <div class="container">
-            <p class="text-right">
-                <time>Last update 30.05.2017</time>
-                <a href="http://tecfa.unige.ch/perso/mafritz">
-                    <img id="maf-logo" src="./images/logo.png" title="Mattia A. Fritz">
-                </a>
-            </p>
-        </div>
+      <div class="container">
+        <p class="text-right">
+          <time>Last update 30.05.2017</time>
+          <a href="http://tecfa.unige.ch/perso/mafritz">
+            <img
+              id="maf-logo"
+              src="./images/logo.png"
+              title="Mattia A. Fritz"
+            />
+          </a>
+        </p>
+      </div>
     </footer>
-    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./node_modules/underscore/underscore-min.js"></script>
-    <script src="./node_modules/vue/dist/vue.min.js"></script>
-    <script src="./node_modules/tween.js/src/Tween.js"></script>
+    <script src="./vendor/jquery/jquery.min.js"></script>
+    <script src="./vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="./vendor/underscore/underscore-min.js"></script>
+    <script src="./vendor/vuejs/vue.min.js"></script>
+    <script src="./vendor/tweenjs/Tween.js"></script>
     <script src="./js/common.js"></script>
-</body>
-
+  </body>
 </html>
