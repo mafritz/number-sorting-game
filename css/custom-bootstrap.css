@@ -6762,7 +6762,8 @@ a.navbar-brand {
   padding-right: 10px;
 }
 .btn-hover-state:hover {
-  color: #FF3300;
+  color: #000000;
+  cursor: move;
 }
 .btn-game-disabled {
   background-color: #EAEAEA;
@@ -6804,7 +6805,7 @@ input.howManyInput {
 #maf-logo {
   background-color: #970000;
   padding: 15px;
-  max-width: 97px;
+  max-width: 70px;
   margin-left: 20px;
 }
 footer {
