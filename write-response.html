@@ -97,6 +97,7 @@
           v-for="n in numbersToOrder"
           class="alert btn-game"
           v-bind:class="itemClass(n)"
+          :data-num-integer="n"
         >
           <animated-integer v-bind:value="n"></animated-integer>
         </li>

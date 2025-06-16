@@ -98,6 +98,7 @@
         <li
           v-for="n in numbersToOrder"
           class="alert alert-warning btn-game btn-hover-state"
+          :data-num-integer="n"
         >
           <animated-integer v-bind:value="n"></animated-integer>
         </li>

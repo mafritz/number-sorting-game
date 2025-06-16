@@ -96,6 +96,7 @@
           <button
             class="btn btn-lg btn-game alert alert-warning"
             @click="addNumber"
+            :data-num-integer="n"
           >
             <animated-integer v-bind:value="n"></animated-integer>
           </button>

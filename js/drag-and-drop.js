@@ -35,7 +35,7 @@ var app = new Vue({
     checkResponseDragAndDrop: function () {
       var replyNumbers = [];
       $("#listNumbers li").each(function () {
-        replyNumbers.push(+$(this).text().replaceAll("'", ""));
+        replyNumbers.push(+$(this).attr("data-num-integer"));
       });
       if (compare(this.numbersToOrder, replyNumbers)) {
         this.showResponse = true;
